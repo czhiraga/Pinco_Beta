@@ -11,6 +11,8 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 public class BaseTabActivity extends FragmentActivity {
+	
+	private LocalActivityManager mlam;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +21,8 @@ public class BaseTabActivity extends FragmentActivity {
 		setContentView(R.layout.base_tab_activity);
 
 		// tabhost
-		LocalActivityManager mlam = new LocalActivityManager(this, false);
+		mlam = new LocalActivityManager(this, false);
+		mlam.dispatchCreate(savedInstanceState);
 		TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup(mlam);
 		
@@ -46,6 +49,16 @@ public class BaseTabActivity extends FragmentActivity {
 		tabHost.setCurrentTab(0);
 	}
 	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mlam.dispatchResume();
+	}
 	
-
+	@Override
+	protected void onPause() {
+		super.onResume();
+		mlam.dispatchPause(isFinishing());
+	}
+	
 }
