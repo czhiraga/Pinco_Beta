@@ -1,16 +1,8 @@
 package jp.tokyo.shibuya.pinco.activity;
 
-import java.io.UnsupportedEncodingException;
-
 import jp.tokyo.shibuya.pinco.R;
-import jp.tokyo.shibuya.pinco.entity.AuthenticationEntity;
-import jp.tokyo.shibuya.pinco.jsonutil.api.Authenticate;
-import jp.tokyo.shibuya.pinco.util.Settings;
 import jp.tokyo.shibuya.pinco.util.PreferenceUtil;
-
-import org.json.JSONException;
-
-import android.os.AsyncTask;
+import jp.tokyo.shibuya.pinco.util.Settings;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;

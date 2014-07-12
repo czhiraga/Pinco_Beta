@@ -1,0 +1,56 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:id="@+id/add_progress"
+	android:orientation="horizontal"
+	android:background="@color/white"
+	android:layout_height="50dp">
+	<LinearLayout
+			android:id="@+id/footer_left_bar"
+			android:layout_height="fill_parent"
+			android:layout_width="3dp"
+			android:layout_gravity="left"
+			android:orientation="horizontal"
+			android:background="@color/white" />
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_weight="1">
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="50dp"
+			android:layout_marginLeft="10dp"
+			android:gravity="center"
+			android:layout_height="50dp">
+			<ProgressBar
+				style="@android:style/Widget.ProgressBar.Inverse"
+				android:id="@+id/footer_progress"
+				android:layout_gravity="center_vertical"
+				android:layout_height="25dp"
+				android:layout_width="25dp" />
+		</LinearLayout>
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_marginLeft="10dp"
+			android:layout_height="50dp">
+			<TextView
+				android:layout_height="wrap_content"
+				android:id="@+id/textView1"
+				android:layout_width="fill_parent"
+				android:textColor="@color/black"
+				android:textStyle="bold"
+				android:text="@string/now_loading"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:textSize="18dp"
+				android:layout_marginLeft="30dp"></TextView>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+			android:id="@+id/footer_right_bar"
+			android:layout_height="fill_parent"
+			android:layout_width="3dp"
+			android:layout_gravity="right"
+			android:orientation="horizontal"
+			android:background="@color/white" />
+</LinearLayout>
