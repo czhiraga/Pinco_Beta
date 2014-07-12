@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import jp.tokyo.shibuya.pinco.entity.AuthenticationEntity;
-import jp.tokyo.shibuya.pinco.util.Settings;
 import jp.tokyo.shibuya.pinco.util.GetJson;
-import jp.tokyo.shibuya.pinco.util.Util;
+import jp.tokyo.shibuya.pinco.util.PreferenceUtil;
+import jp.tokyo.shibuya.pinco.util.Settings;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,19 +15,13 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.net.Uri.Builder;
 
-public class Authenticate {
+public class Feed {
 	
-	public static AuthenticationEntity getAccessToken(Context context, String code) throws UnsupportedEncodingException,
+	public static AuthenticationEntity get(Context context) throws UnsupportedEncodingException,
 	   JSONException {
-		if (Util.isEmpty(code)) return null;
 		
 		Map<String,String> map = new HashMap<String,String>();
-		map.put("client_id", Settings.CLIENT_ID);
-		map.put("client_secret", Settings.CLIENT_SECRET);
-		map.put("grant_type", "authorization_code");
-		map.put("redirect_uri", Settings.REDIRECT_URI);
-		map.put("code", code);
-		
+		map.put("access_token", PreferenceUtil.getAccessToken(context));
 		return getDataAndParse(context, map);
 	}
 	
@@ -39,10 +33,10 @@ public class Authenticate {
 		Builder builder = new Builder();
 		builder.scheme(Settings.HTTPS);
 		builder.encodedAuthority(Settings.INSTA_API_DOMAIN);
-		builder.path("oauth/access_token");
+		builder.path(Settings.INSTA_API_VERSION + Settings.API_SELF_FEED);
 		
 		//サーバからJsonファイルを取得
-		JSONObject jObject = GetJson.getJson(builder, map, 2, context);
+		JSONObject jObject = GetJson.getJson(builder, map, 1, context);
 		
 		// エラーチェック
 //		ApiUtility.checkApiStatus(jObject);

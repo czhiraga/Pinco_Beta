@@ -1,9 +1,17 @@
 package jp.tokyo.shibuya.pinco.activity;
 
+import java.io.UnsupportedEncodingException;
+
 import jp.tokyo.shibuya.pinco.R;
+import jp.tokyo.shibuya.pinco.entity.AuthenticationEntity;
+import jp.tokyo.shibuya.pinco.jsonutil.api.Feed;
 import jp.tokyo.shibuya.pinco.util.PreferenceUtil;
 import jp.tokyo.shibuya.pinco.util.Util;
+
+import org.json.JSONException;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -22,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		
+		new GetFeedTask().execute();
 	}
 	
 	
@@ -80,20 +88,20 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 	
-//	class AuthenticateTask extends AsyncTask<Void, Void, Void> {
-//		
-//		
-//		@Override
-//		protected Void doInBackground(Void... params) {
-//			
-//			try {
-//				AuthenticationEntity entity = Authenticate.getAccessToken(MainActivity.this, PreferenceUtil.getAuthCode(MainActivity.this));
-//			} catch (UnsupportedEncodingException | JSONException e) {
-//				e.printStackTrace();
-//			}
-//			
-//			return null;
-//		}
-//		
-//	}
+	class GetFeedTask extends AsyncTask<Void, Void, Void> {
+		
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			
+			try {
+				AuthenticationEntity entity = Feed.get(MainActivity.this);
+			} catch (UnsupportedEncodingException | JSONException e) {
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+	}
 }

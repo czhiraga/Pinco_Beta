@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 import jp.tokyo.shibuya.pinco.R;
 import jp.tokyo.shibuya.pinco.entity.AuthenticationEntity;
 import jp.tokyo.shibuya.pinco.jsonutil.api.Authenticate;
-import jp.tokyo.shibuya.pinco.util.Constants;
+import jp.tokyo.shibuya.pinco.util.Settings;
 import jp.tokyo.shibuya.pinco.util.PreferenceUtil;
 
 import org.json.JSONException;
@@ -57,7 +57,7 @@ public class AuthenticationActivity extends ActionBarActivity {
 			}
 		});
 		
-		webView.loadUrl(Constants.OAUTH_URL);
+		webView.loadUrl(Settings.INSTA_OAUTH_URL);
 	}
 	
 	/**
@@ -67,9 +67,9 @@ public class AuthenticationActivity extends ActionBarActivity {
 	 * @return
 	 */
 	private boolean checkUrl(String url) {
-		if (url == null || url.indexOf("https://instagram.com/oauth/authorize") != -1 || url.indexOf(Constants.REDIRECT_URI) == -1) return false;
+		if (url == null || url.indexOf("https://instagram.com/oauth/authorize") != -1 || url.indexOf(Settings.REDIRECT_URI) == -1) return false;
 		
-		String paramStr = url.replace(Constants.REDIRECT_URI, "");
+		String paramStr = url.replace(Settings.REDIRECT_URI, "");
 		if (paramStr.indexOf("?") != -1) paramStr = paramStr.replace("?", "");
 		if (paramStr.indexOf("#") != -1) paramStr = paramStr.replace("#", "");
 		
